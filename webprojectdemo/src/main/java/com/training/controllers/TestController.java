@@ -18,7 +18,7 @@ public class TestController {
 	}
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
-	public String login()   // http://localhost:8080/webprojectdemo/hello
+	public String login()   // http://localhost:8080/webprojectdemo/login
 	{
 		return "login.jsp";
 	}
