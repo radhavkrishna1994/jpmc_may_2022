@@ -1,11 +1,13 @@
 package com.training.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.training.interfaces.Operator;
 
 public class OperatorDemo {
 
+	@Qualifier("product")
 	@Autowired   //Setter injection
 	private Operator operator;
 		
@@ -13,6 +15,11 @@ public class OperatorDemo {
 	/*
 	 * public OperatorDemo(Operator operator) { this.operator=operator; }
 	 */
+	
+	public void init()
+	{
+		System.out.println("Init method..");
+	}
 	
 	public OperatorDemo() {}
 	
