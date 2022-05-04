@@ -27,8 +27,8 @@
 
 
 
-<bean id="demo" class="com.training.bean.OperatorDemo" autowire="byName">   <!-- autowire="byType" -->
-<!-- <property name="operator" ref="op1"></property> --> <!--  setter -->
+<bean id="demo" class="com.training.bean.OperatorDemo">  
+<property name="operator" ref="operator"></property> 
 
 
 </bean>

@@ -13,5 +13,14 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 <constructor-arg name="message" value="This is a message from constructor"></constructor-arg>
 </bean>
 
+<bean id="operator"  class="com.training.bean.AddOperator">
+
+</bean>
+
+<bean id="demo"  class="com.training.bean.OperatorDemo">
+<property name="operator" ref="operator" />
+
+</bean>
+
 
 </beans>
