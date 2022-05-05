@@ -1,6 +1,7 @@
 package com.training.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,12 @@ public class BookService implements BookServiceI {
 	@Override
 	public Book getBook(Long isbn) {
 		
+		Optional<Book> bookOp = bookRepo.findById(isbn);
+		if(bookOp.isPresent())
+		{
+			Book bookFound = bookOp.get();
+			return bookFound;
+		}
 		return null;
 	}
 
@@ -35,13 +42,27 @@ public class BookService implements BookServiceI {
 
 	@Override
 	public Book deleteBook(Long isbn) {
-		// TODO Auto-generated method stub
+		
+		Optional<Book> bookOp = bookRepo.findById(isbn);
+		if(bookOp.isPresent())
+		{
+			Book bookFound = bookOp.get();
+			bookRepo.delete(bookFound);
+			return bookFound;
+		}
 		return null;
 	}
 
 	@Override
 	public Book updateBookStock(Long isbn, Long newStock) {
-		// TODO Auto-generated method stub
+		Optional<Book> bookOp = bookRepo.findById(isbn);
+		if(bookOp.isPresent())
+		{
+			Book bookFound = bookOp.get();
+			bookFound.setStock(bookFound.getStock()+newStock);
+			bookRepo.save(bookFound);
+			return bookFound;
+		}
 		return null;
 	}
 
