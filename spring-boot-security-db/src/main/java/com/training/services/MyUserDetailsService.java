@@ -30,7 +30,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	private UserRepo userRepo;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) {
 
 		log.info("In MyUserDetailsService");
 		//get the details
@@ -60,7 +60,7 @@ public class MyUserDetailsService implements UserDetailsService {
 			return new User(username, myUser.getPassword(), list);
 		}
 		else
-			throw new UsernameNotFoundException("User not found");
+			throw new MyUsernameNotFoundException("User not found");
 	}
 
 }
