@@ -37,7 +37,7 @@ public class BookController {
 		return bookService.getBooks();
 	}
 	
-	@ResponseStatus(HttpStatus.ACCEPTED)
+	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/book")
 	public Book saveBook(@RequestBody Book book)
 	{
@@ -56,7 +56,10 @@ public class BookController {
 	public ResponseEntity<Book> getBook1(@PathVariable("isbn") Long isbn)
 	{
 		Book book = bookService.getBook(isbn);
+		if(book!=null)
 		return new ResponseEntity<Book>(book, HttpStatus.FOUND);
+		else
+			return new ResponseEntity<Book>(book, HttpStatus.NOT_FOUND);
 	}
 	
 	@DeleteMapping("/book/isbn/{isbn}")
