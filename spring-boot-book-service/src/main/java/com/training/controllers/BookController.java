@@ -2,6 +2,8 @@ package com.training.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.training.exceptions.BookNotFoundException;
 import com.training.interfaces.BookServiceI;
 import com.training.model.Book;
 
@@ -39,7 +42,7 @@ public class BookController {
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/book")
-	public Book saveBook(@RequestBody Book book)
+	public Book saveBook(@RequestBody @Valid Book book)
 	{
 		return bookService.saveBook(book);
 	}
@@ -47,20 +50,18 @@ public class BookController {
 	@ResponseStatus(HttpStatus.FOUND)
 	//http://localhost:8081/bookstore/api/book/isbn/1234
 	@GetMapping("/book/isbn/{isbn}")
-	public Book getBook(@PathVariable("isbn") Long isbn)
+	public Book getBook(@PathVariable("isbn") Long isbn) throws BookNotFoundException
 	{
 		return bookService.getBook(isbn);
 	}
 	
-	@GetMapping("/book1/isbn/{isbn}")
-	public ResponseEntity<Book> getBook1(@PathVariable("isbn") Long isbn)
-	{
-		Book book = bookService.getBook(isbn);
-		if(book!=null)
-		return new ResponseEntity<Book>(book, HttpStatus.FOUND);
-		else
-			return new ResponseEntity<Book>(book, HttpStatus.NOT_FOUND);
-	}
+	/*
+	 * @GetMapping("/book1/isbn/{isbn}") public ResponseEntity<Book>
+	 * getBook1(@PathVariable("isbn") Long isbn) { Book book =
+	 * bookService.getBook(isbn); if(book!=null) return new
+	 * ResponseEntity<Book>(book, HttpStatus.FOUND); else return new
+	 * ResponseEntity<Book>(book, HttpStatus.NOT_FOUND); }
+	 */
 	
 	@DeleteMapping("/book/isbn/{isbn}")
 	public Book DeleteBook(@PathVariable("isbn") Long isbn)

@@ -2,6 +2,7 @@ package com.training.interfaces;
 
 import java.util.List;
 
+import com.training.exceptions.BookNotFoundException;
 import com.training.model.Book;
 
 public interface BookServiceI {
@@ -10,7 +11,7 @@ public interface BookServiceI {
 	public List<Book> getBooks();
 	
 	// get a book
-	public Book getBook(Long isbn);
+	public Book getBook(Long isbn) throws BookNotFoundException;
 	
 	//save a book
 	public Book saveBook(Book book);

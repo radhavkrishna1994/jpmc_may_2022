@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.training.exceptions.BookNotFoundException;
 import com.training.interfaces.BookServiceI;
 import com.training.model.Book;
 import com.training.repo.BookRepo;
@@ -23,15 +24,19 @@ public class BookService implements BookServiceI {
 	}
 
 	@Override
-	public Book getBook(Long isbn) {
+	public Book getBook(Long isbn) throws BookNotFoundException {
 		
 		Optional<Book> bookOp = bookRepo.findById(isbn);
+		
 		if(bookOp.isPresent())
 		{
 			Book bookFound = bookOp.get();
 			return bookFound;
 		}
-		return null;
+		else
+				throw new BookNotFoundException("Book Not Found");
+		//return null;
+			
 	}
 
 	@Override
