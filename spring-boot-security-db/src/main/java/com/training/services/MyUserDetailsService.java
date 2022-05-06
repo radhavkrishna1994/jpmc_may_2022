@@ -20,11 +20,14 @@ import com.training.config.SecurityConfig;
 import com.training.model.MyUser;
 import com.training.repo.UserRepo;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
 	// username is one that is entered by the user on the form
-	private Logger log = LoggerFactory.getLogger(MyUserDetailsService.class);
+	//private Logger log = LoggerFactory.getLogger(MyUserDetailsService.class);
 
 	@Autowired
 	private UserRepo userRepo;
@@ -60,7 +63,7 @@ public class MyUserDetailsService implements UserDetailsService {
 			return new User(username, myUser.getPassword(), list);
 		}
 		else
-			throw new MyUsernameNotFoundException("User not found");
+			throw new UsernameNotFoundException("User not found");
 	}
 
 }

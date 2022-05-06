@@ -1,6 +1,6 @@
 package com.training.services;
 
-public class MyUsernameNotFoundException extends UserNameNotFoundException {
+public class MyUsernameNotFoundException extends Exception {
 
 	private String message;
 	
