@@ -50,14 +50,16 @@ public class SecurityController {
 		try {
 		authManger.authenticate(new UsernamePasswordAuthenticationToken
 				(userInput.getUsername(), userInput.getPassword()));
+		return jwtUtil.generateToken(userInput.getUsername());
 		
 		}
 		catch(Exception ex)
 		{
 			log.info(ex.toString());
+			return "User Credentials Not Right";
 		}
 		
-		return jwtUtil.generateToken(userInput.getUsername());
+		
 		
 	}
 
