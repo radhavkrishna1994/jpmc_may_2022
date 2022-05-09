@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.training.model.Book;
 import com.training.repo.BookRepo;
 
+
 @SpringBootApplication
 public class SpringBootBookServiceApplication implements CommandLineRunner{
 
