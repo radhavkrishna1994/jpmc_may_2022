@@ -28,5 +28,7 @@ public class Book {
 	@Min(value = 100,message="min stock has to be 100")
 	@Max(value = 200,message="max stock has to be 200")
 	private Long stock;
+	
+	private int port;
 
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,10 +23,22 @@ import com.training.exceptions.BookNotFoundException;
 import com.training.interfaces.BookServiceI;
 import com.training.model.Book;
 
+@Configuration
 @RequestMapping("/bookstore/api")
 @RestController
 public class BookController {
 	
+	@Value("${server.port}")
+	private int port;
+	
+	
+	public int getPort() {
+		return port;
+	}
+	public void setPort(int port) {
+		this.port = port;
+	}
+
 	@Autowired
 	private BookServiceI bookService;
 	
@@ -52,7 +66,9 @@ public class BookController {
 	@GetMapping("/book/isbn/{isbn}")
 	public Book getBook(@PathVariable("isbn") Long isbn) throws BookNotFoundException
 	{
-		return bookService.getBook(isbn);
+		Book book = bookService.getBook(isbn);
+		book.setPort(port);
+		return book;
 	}
 	
 	/*
