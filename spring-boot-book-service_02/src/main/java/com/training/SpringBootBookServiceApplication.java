@@ -10,6 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.training.model.Book;
 import com.training.repo.BookRepo;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+
+@OpenAPIDefinition(info = @Info(title = "Books API", version = "1.0", description = "Books Information"))
 @SpringBootApplication
 public class SpringBootBookServiceApplication implements CommandLineRunner{
 
@@ -38,6 +42,6 @@ public class SpringBootBookServiceApplication implements CommandLineRunner{
 		 * System.out.println(bookRepo.getByStockLessThan(120l));
 		 */
 		
-		System.out.println(bookRepo.updateStock(200l,30l));	
+		//System.out.println(bookRepo.updateStock(200l,30l));	
 	}
 }
