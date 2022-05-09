@@ -17,10 +17,10 @@ import io.swagger.v3.oas.annotations.info.Info;
 @EnableDiscoveryClient
 @OpenAPIDefinition(info = @Info(title = "Books API", version = "1.0", description = "Books Information"))
 @SpringBootApplication
-public class SpringBootBookServiceApplication implements CommandLineRunner{
+public class SpringBootBookService2Application implements CommandLineRunner{
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootBookServiceApplication.class, args);
+		SpringApplication.run(SpringBootBookService2Application.class, args);
 	}
 	
 	@Autowired

@@ -35,9 +35,7 @@ public class BookController {
 	public int getPort() {
 		return port;
 	}
-	public void setPort(int port) {
-		this.port = port;
-	}
+	
 
 	@Autowired
 	private BookServiceI bookService;
