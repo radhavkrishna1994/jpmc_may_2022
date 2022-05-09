@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import com.training.feign.BookFeign;
 import com.training.model.Order;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 
 @Service
 public class OrderService {
@@ -20,6 +22,7 @@ public class OrderService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	@CircuitBreaker(name = "instanceA",fallbackMethod = "defaultFallBack")
 	public Order createOrder(Long isbn,int qty)
 	{
 		Map<String,String> map = new HashMap<>();
@@ -31,6 +34,11 @@ public class OrderService {
 		order.setAmount(order.getPrice() * qty );
 		
 		return order;
+	}
+	
+	public Order defaultFallBack(Exception e)
+	{
+		return new Order(0l, "Fault in the book retrieval", 0.0, null, 0, null, 0);
 	}
 	
 	@Autowired
