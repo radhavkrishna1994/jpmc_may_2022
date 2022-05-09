@@ -58,6 +58,7 @@ public class BookController {
 	@PostMapping("/book")
 	public Book saveBook(@RequestBody @Valid Book book)
 	{
+		
 		return bookService.saveBook(book);
 	}
 	
@@ -66,6 +67,7 @@ public class BookController {
 	@GetMapping("/book/isbn/{isbn}")
 	public Book getBook(@PathVariable("isbn") Long isbn) throws BookNotFoundException
 	{
+		System.out.println(port);
 		Book book = bookService.getBook(isbn);
 		book.setPort(port);
 		return book;

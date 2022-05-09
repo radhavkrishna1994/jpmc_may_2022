@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import com.training.model.Book;
 import com.training.repo.BookRepo;
@@ -13,6 +14,7 @@ import com.training.repo.BookRepo;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 
+@EnableDiscoveryClient
 @OpenAPIDefinition(info = @Info(title = "Books API", version = "1.0", description = "Books Information"))
 @SpringBootApplication
 public class SpringBootBookServiceApplication implements CommandLineRunner{
